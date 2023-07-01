@@ -1,0 +1,174 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Channels;
+using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+
+namespace Atividade.cs.AtividadeParaEntregar
+{
+    internal class Atividade
+    {
+        public static void Main()
+        {
+            //Variaveis declaradas
+            string nome;
+            string bairro;
+            int idade;
+            int num;
+            string serie;
+            double hist;
+            double grav;
+            double peso, altura, imc;
+
+            Console.WriteLine("Olá Tudo bem?!");
+            Console.WriteLine("Iremos Fazer algumas perguntas!");
+
+
+            Console.WriteLine();
+
+
+            Console.WriteLine("Por favor digite seu nome completo!");
+            nome = (Console.ReadLine());
+            Console.WriteLine("Agora digite o Bairro onde você mora!");
+            bairro = (Console.ReadLine());
+            Console.WriteLine("Agora a sua idade");
+            idade = int.Parse(Console.ReadLine());
+
+            Console.WriteLine($"Seu nome é: {nome.ToUpper()}");
+            Console.WriteLine($"O bairro digitado foi: {bairro}");
+
+            if (idade < 18)
+            {
+                Console.WriteLine("Você é menor de idade e por isso não pode dirigir!");
+            }
+            else if (idade >= 60)
+            {
+                Console.WriteLine("Você é um idoso, pegue um onibus ou peça para alguem te pedir um uber!");
+            }
+            else
+            {
+                Console.WriteLine("Você é maior de idade! E pode Dirigir!");
+            }
+
+            Console.WriteLine();
+
+
+
+            Console.WriteLine("OK Agora digite um numero qualquer, eu irei dizer se ele é positivo ou negativo!");
+
+            num = int.Parse(Console.ReadLine());
+            if (num < 0)
+            {
+                Console.WriteLine("Numero digitado é negativo");
+            }
+            else if (num > 0)
+            {
+                Console.WriteLine("Numero digitado é positivo");
+            }
+            else
+            {
+                Console.WriteLine("O numero digitado foi zero!");
+            }
+
+            Console.WriteLine();
+
+            Console.WriteLine("Agora me diga, o nome de uma serie/filme/anime, e de 2(duas) notas para ela, sendo uma para a historia e outra para a gravação!");
+            serie = (Console.ReadLine());
+            Console.WriteLine("LEMBRE-SE A NOTA É DE 0 A 10!");
+            Console.WriteLine("Nota para a historia!");
+            hist = double.Parse(Console.ReadLine());
+            Console.WriteLine("Nota para a gravação");
+            grav = double.Parse(Console.ReadLine());
+            Console.WriteLine($"Com as notas dadas a media para a serie {serie} é {(hist + grav) / 2}");
+
+            Console.WriteLine();
+
+
+
+            Console.WriteLine("Você ja ouviu falar do IMC?");
+            Console.WriteLine("Digite 1 para SIM e 2 para NÃO!");
+
+            switch (Console.ReadLine())
+            {
+                case "1":
+                    Console.WriteLine("Vamos calcular seu IMC! Para isso iremos precisar da sua altura, e peso");
+                    break;
+                case "2":
+                    Console.WriteLine("Criado no século 19 pelo matemático Lambert Quételet, o Índice de Massa Corporal," +
+                        "conhecido pela sigla IMC, é um cálculo simples que permite medir se alguém está ou não com o peso ideal." +
+                        "Ele aponta se o peso está adequado ou se está abaixo ou acima do peso.");
+                    Console.WriteLine();
+                    Console.WriteLine("Vamos calcular seu IMC! Para isso iremos precisar da sua altura, e peso");
+                    break;
+            }
+
+            Console.WriteLine("Digite seu peso");
+            peso = double.Parse(Console.ReadLine());
+            Console.WriteLine("Digite a sua altura, usando virgula!");
+            altura = double.Parse(Console.ReadLine());
+
+
+
+            Console.WriteLine("Vamos calcular seu IMC! Para isso iremos precisar da sua altura, e peso!");
+            //calculo imc
+            imc = peso / (altura * altura);
+            Console.WriteLine($"{nome}");
+            Console.WriteLine("o seu IMC É " + imc.ToString("F1"));
+            if (imc >= 18.5 && imc <= 24.9)
+            {
+                Console.WriteLine("IMC está dentro do intervalo saudável");
+            }
+            else
+            {
+                Console.WriteLine("IMC está fora do intervalo de saude");
+            }
+
+            Console.WriteLine();
+
+            Console.WriteLine("Digite 5 filmes que você mais gostou!");
+
+            string[] filme = new string[5];
+
+            for (int i = 0; i < 5; i++)
+            {
+                Console.WriteLine("Digite o nome do Filme #" + (i + 1) + ":");
+                filme[i] = (Console.ReadLine());
+            }
+
+            Console.WriteLine("Filmes digitados:");
+            for (int i = 0; i < 5; i++)
+            {
+                Console.WriteLine(filme[i]);
+            }
+
+            Console.WriteLine();
+
+
+            int numero;
+            do
+            {
+                Console.WriteLine("Digite um número inteiro positivo:");
+                string input = Console.ReadLine();
+
+                // Tenta converter o valor digitado para um número inteiro
+                bool sucesso = int.TryParse(input, out numero);
+
+                // Verifica se a conversão foi bem-sucedida e se o número é positivo
+                if (!sucesso || numero <= 0)
+                {
+                    Console.WriteLine("Número inválido. Digite um número inteiro positivo.");
+                }
+            } while (numero <= 0);
+
+            Console.WriteLine("Números pares até " + numero + ":");
+
+            for (int i = 0; i <= numero; i += 2)
+            {
+                Console.WriteLine(i);
+            }
+        
+        }
+    }
+}
